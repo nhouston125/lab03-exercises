@@ -1,18 +1,11 @@
 Find All Duplicates
 
-function findDups(nums) {
-    const counts = {};
-    const dups = [];
+Find All Duplicates
 
-    nums.forEach(num => {
-        counts[num] = (counts[num] || 0) + 1;
-    });
-
-    Object.entries(counts).forEach(([num, count]) => {
-        if (count > 1) {
-            dups.push(parseInt(num));
-        }
-    });
-
-    return dups;
-}
+def find_duplicates_nested_loop(l: list) -> list:
+    duplicates = []
+    for i in range(len(l)):
+        for j in range(i + 1, len(l)):
+            if l[i] == l[j] and l[i] not in duplicates:
+                duplicates.append(l[i])
+    return duplicates
