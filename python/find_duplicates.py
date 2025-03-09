@@ -1,10 +1,25 @@
-def find_duplicates_nested_loop(l: list) -> list:
-    duplicates = []
-    for i in range(len(l)):
-        for j in range(i + 1, len(l)):
-            if l[i] == l[j] and l[i] not in duplicates:
-                duplicates.append(l[i])
-    return duplicates
+# def find_duplicates_nested_loop(l: list) -> list:
+#     duplicates = []
+#     for i in range(len(l)):
+#         for j in range(i + 1, len(l)):
+#             if l[i] == l[j] and l[i] not in duplicates:
+#                 duplicates.append(l[i])
+#     return duplicates
+
+def find_duplicates_hashmap(l: list) -> list:
+    int_count = {}
+    for num in l:
+        if num in int_count:
+            int_count[num] += 1
+        else:
+            int_count[num] = 1
+    
+    dups = []
+
+    for num, count in int_count.items():
+        if count > 1:
+            dups.append(num)
+    return dups
 
 if __name__ == "__main__":
     sample1 = [3, 7, 5, 6, 7, 4, 8, 5, 7, 66]
@@ -12,7 +27,12 @@ if __name__ == "__main__":
     sample3 = [3, 0, 5, 1, 0]
     sample4 = [3]
     
-    print("Sample 1:", find_duplicates_nested_loop(sample1))
-    print("Sample 2:", find_duplicates_nested_loop(sample2))
-    print("Sample 3:", find_duplicates_nested_loop(sample3))
-    print("Sample 4:", find_duplicates_nested_loop(sample4))
+    # print("Sample 1:", find_duplicates_nested_loop(sample1))
+    # print("Sample 2:", find_duplicates_nested_loop(sample2))
+    # print("Sample 3:", find_duplicates_nested_loop(sample3))
+    # print("Sample 4:", find_duplicates_nested_loop(sample4))
+
+    print("Sample 1:", find_duplicates_hashmap(sample1))
+    print("Sample 2:", find_duplicates_hashmap(sample2))
+    print("Sample 3:", find_duplicates_hashmap(sample3))
+    print("Sample 4:", find_duplicates_hashmap(sample4))
